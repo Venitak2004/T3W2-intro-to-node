@@ -35,6 +35,7 @@ function rollDice(diceSide=6) {
 //     console.log(rollDice(answer.dice_side))
 // });
 
+function getDiceSide() {
 const diceSide = promptSync("How many sided dice do you want to roll? ");
 
 try {
@@ -50,3 +51,5 @@ try {
     console.error("You got an error!");
     console.log(error); // this will give you the stack trace error
 }
+}
+getDiceSide();
