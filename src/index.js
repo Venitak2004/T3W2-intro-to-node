@@ -36,20 +36,23 @@ function rollDice(diceSide=6) {
 // });
 
 function getDiceSide() {
-const diceSide = promptSync("How many sided dice do you want to roll? ");
-
-try {
-    // create variable diceResult, executable function, parseInt makes it an integer
-    const parsedDiceSide = parseInt(diceSide);
-    if (isNaN(parsedDiceSide)){
-        throw new Error(`Please enter a valid number.`);
-    }
-    const diceResult = rollDice(parsedDiceSide);
-    console.log(`You rolled a ${diceResult}-sided dice.`);
-    // because we put 'throw' need to catch the (error)
-} catch (error){
-    console.error("You got an error!");
-    console.log(error); // this will give you the stack trace error
-}
+    do {
+        const diceSide = promptSync("How many sided dice do you want to roll? ");
+        try {
+            // create variable diceResult, executable function, parseInt makes it an integer
+            const parsedDiceSide = parseInt(diceSide);
+            if (isNaN(parsedDiceSide)){
+                throw new Error(`Please enter a valid number.`);
+            }
+            const diceResult = rollDice(parsedDiceSide);
+            console.log(`You rolled a ${diceResult}-sided dice.`);
+            // because we put 'throw' need to catch the (error)
+        } catch (error) {
+            console.error("You got an error!");
+            console.log(error); // this will give you the stack trace error
+        } finally {
+            console.log("Dice roll operation completed.")
+        }
+    } while (promptSync('Do you want to roll again (y/n) ').toLocaleLowerCase() === 'y');
 }
 getDiceSide();
